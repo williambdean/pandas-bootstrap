@@ -1,44 +1,72 @@
-[tool.poetry]
+[project]
 name = "pandas-bootstrap"
-version = "0.2.1"
+version = "0.3.0"
 description = "Statistical Bootstrap with Pandas made easy"
-authors = ["Will Dean <wd60622@gmail.com>"]
+authors = [{ name = "Will Dean", email = "wd60622@gmail.com" }]
+requires-python = ">=3.9,<4.0"
 readme = "README.md"
 license = "MIT"
-homepage = "https://williambdean.github.io/pandas-bootstrap/"
-documentation = "https://williambdean.github.io/pandas-bootstrap/"
-repository = "https://github.com/williambdean/pandas-bootstrap"
-packages = [
-    {include = "bootstrap"},
-    {include = "bootstrap/py.typed"}
-]
 classifiers = [
-    'Intended Audience :: Science/Research',
-    'Operating System :: OS Independent',
-    'Programming Language :: Cython',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3 :: Only',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12',
-    'Topic :: Scientific/Engineering'
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Cython",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "pandas>=1.0.0",
+    "joblib>=1.1.1,<2",
+    "typing_extensions ; python_version < '3.10'",
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-pandas = ">=1.0.0"
-joblib = "^1.1.1"
-typing_extensions = { version = "*", python = "<3.10" }
+[project.urls]
+Homepage = "https://williambdean.github.io/pandas-bootstrap/"
+Repository = "https://github.com/williambdean/pandas-bootstrap"
+Documentation = "https://williambdean.github.io/pandas-bootstrap/"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
-pytest-cov = "^4.1.0"
-matplotlib = "^3.7.2"
-scikit-learn = "^1.3.0"
-ipython = "8.8.0"
-tox = "^4.12.0"
+[dependency-groups]
+dev = [
+    "pytest>=7.4.0,<8",
+    "pytest-cov>=4.1.0,<5",
+    "matplotlib>=3.7.2,<4",
+    "scikit-learn>=1.3.0,<2",
+    "ipython==8.8.0",
+    "tox>=4.12.0,<5",
+]
+docs = [
+    "mkdocs>=1.4.3,<2",
+    "mkdocstrings[python]>=0.22.0,<0.23",
+    "mkdocs-material>=9.1.18,<10",
+]
+
+[tool.uv]
+default-groups = [
+    "dev",
+    "docs",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "bootstrap",
+    "bootstrap/py.typed",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "bootstrap",
+    "bootstrap/py.typed",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 minversion = "6.0.0"
@@ -53,11 +81,11 @@ legacy_tox_ini = """
     min_version = 4.0
     isolated_build = true
     env_list =
+        py313
         py312
         py311
         py310
         py39
-        py38
 
     [testenv]
     deps =
@@ -65,12 +93,3 @@ legacy_tox_ini = """
         pytest-cov
     commands = pytest
 """
-
-[tool.poetry.group.docs.dependencies]
-mkdocs = "^1.4.3"
-mkdocstrings = {extras = ["python"], version = "^0.22.0"}
-mkdocs-material = "^9.1.18"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
