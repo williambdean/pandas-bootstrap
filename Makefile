@@ -1,12 +1,12 @@
 test:
-	poetry run pytest
+	uv run pytest
 
 cov:
-	poetry run pytest --cov-report html --cov=bootstrap tests && open htmlcov/index.html
+	uv run pytest --cov-report html --cov=bootstrap tests && open htmlcov/index.html
 
 format:
-	poetry run pre-commit run --all-files
+	uv run pre-commit run --all-files
 
 html:
 	open http://localhost:8000/
-	poetry run mkdocs serve
+	uv run mkdocs serve
