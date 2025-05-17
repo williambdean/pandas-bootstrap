@@ -1,3 +1,6 @@
+---
+comments: true
+---
 A `joblib.Parallel` instance can be passed in order to parallelize the bootstrapping process. See the [joblib documentation](https://joblib.readthedocs.io/en/latest/parallel.html) for more information.
 
 ```python
