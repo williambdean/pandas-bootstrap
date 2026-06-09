@@ -4,6 +4,11 @@ on:
     branches:
       - master
       - main
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - ".github/workflows/docs.yml"
+      - "bootstrap/**"
 permissions:
   contents: write
 jobs:

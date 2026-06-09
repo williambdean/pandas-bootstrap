@@ -1,7 +1,13 @@
 name: Tests
 
 on:
-  - push
+  push:
+    paths:
+      - "bootstrap/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - ".github/workflows/tests.yml"
+      - ".github/workflows/coverage.yml"
 
 jobs:
   test:
