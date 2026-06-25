@@ -1,5 +1,17 @@
 name: Workflow for Codecov pandas-bootstrap
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "bootstrap/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - ".github/workflows/coverage.yml"
+  pull_request:
+    paths:
+      - "bootstrap/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - ".github/workflows/coverage.yml"
 jobs:
   run:
     runs-on: ubuntu-latest
