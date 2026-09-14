@@ -8,8 +8,10 @@ from joblib import Parallel
 
 parallel = Parallel(n_jobs=-1)
 
+
 def some_func(df: pd.DataFrame) -> pd.Series:
     return df.mean(numeric_only=True)
+
 
 df_samples = df.boot.get_samples(bfunc=some_func, B=100, parallel=parallel)
 ```
