@@ -22,12 +22,10 @@ if sys.version_info < (3, 10):
 else:
     from typing import ParamSpec
 
+import pandas as pd
 from joblib import Parallel
 
-import pandas as pd
-
-from bootstrap.bootstrap import bootstrap, BFUNC
-
+from bootstrap.bootstrap import BFUNC, bootstrap
 
 P = ParamSpec("P")
 
