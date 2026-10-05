@@ -1,21 +1,18 @@
 """Core bootstrapping logic which powers the `boot` extension including parallelization and return type inference."""
 
-from copy import copy
-from inspect import signature, Signature
-from typing import Any, Callable, List, Dict, Union, Optional, Tuple
-
 import sys
+from copy import copy
+from inspect import Signature, signature
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 if sys.version_info < (3, 10):
     from typing_extensions import ParamSpec
 else:
     from typing import ParamSpec
 
-from joblib import Parallel, delayed
-
 import numpy as np
 import pandas as pd
-
+from joblib import Parallel, delayed
 
 BFUNC_INPUT = Union[pd.DataFrame, pd.Series]
 BFUNC_OUTPUT = Union[pd.DataFrame, pd.Series]
