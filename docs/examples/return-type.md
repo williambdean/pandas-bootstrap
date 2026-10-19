@@ -24,21 +24,21 @@ import bootstrap
 
 n_points = 100
 rng = np.random.default_rng(0)
-df = pd.DataFrame({
-    "a": rng.normal(size=n_points),
-    "b": rng.normal(size=n_points),
-    "group": rng.choice(["A", "B"], size=n_points)
-})
-
+df = pd.DataFrame(
+    {
+        "a": rng.normal(size=n_points),
+        "b": rng.normal(size=n_points),
+        "group": rng.choice(["A", "B"], size=n_points),
+    }
+)
 ```
 
 ### `float` or `int` return a `pd.Series`
 
 ```python
-
-
 def float_return(df: pd.DataFrame, col: str) -> float:
     return df[col].mean()
+
 
 series = df.boot.get_samples(bfunc=float_return, col="a", B=5)
 ```
@@ -60,6 +60,7 @@ Name: stat, dtype: float64
 def series_return(df: pd.DataFrame) -> pd.Series:
     return df.mean(numeric_only=True)
 
+
 dataframe = df.boot.get_samples(bfunc=series_return, B=5)
 ```
 
@@ -78,6 +79,7 @@ sample
 ```python
 def df_return(df: pd.DataFrame) -> pd.DataFrame:
     return df.groupby("group").mean()
+
 
 dataframe_grouped = df.boot.get_samples(bfunc=df_return, B=5)
 ```
