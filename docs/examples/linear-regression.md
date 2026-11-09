@@ -17,9 +17,7 @@ SLOPE = 3
 INTERCEPT = 2
 SIGMA = 5
 
-df = pd.DataFrame({
-    "x": np.random.uniform(0, 3, size=N_POINTS)
-})
+df = pd.DataFrame({"x": np.random.uniform(0, 3, size=N_POINTS)})
 df["y"] = (
     INTERCEPT
     + SLOPE * df["x"]
@@ -27,13 +25,12 @@ df["y"] = (
     + np.random.normal(loc=0, scale=SIGMA, size=N_POINTS)
 )
 
+
 def bfunc(df: pd.DataFrame, model: LinearRegression) -> pd.Series:
     model.fit(df[["x"]], df["y"])
 
-    return pd.Series({
-        "intercept": model.intercept_,
-        "slope": model.coef_[0]
-    })
+    return pd.Series({"intercept": model.intercept_, "slope": model.coef_[0]})
+
 
 B = 5_000
 model = LinearRegression()
