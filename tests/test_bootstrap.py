@@ -1,14 +1,12 @@
 from typing import Dict
 
+import pandas as pd
+import pytest
 from joblib import Parallel
 
-import pytest
-
-import pandas as pd
-
 from bootstrap.bootstrap import (
-    bootstrap,
     UnsupportedReturnType,
+    bootstrap,
 )
 
 
@@ -45,7 +43,7 @@ def dataframe_to_float_inferred(df):
     return dataframe_to_float(df)
 
 
-dataframe_lambda_func = lambda df: df.mean(numeric_only=True)  # noqa
+dataframe_lambda_func = lambda df: df.mean(numeric_only=True)
 
 
 # Series functions
@@ -82,7 +80,7 @@ def series_to_series_inferred(series):
     return series_to_series(series)
 
 
-series_lambda_func = lambda ser: ser.mean()  # noqa
+series_lambda_func = lambda ser: ser.mean()
 
 
 @pytest.mark.parametrize("parallel", [None, Parallel(n_jobs=2)])
