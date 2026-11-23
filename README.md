@@ -29,16 +29,22 @@ import pandas as pd
 
 import bootstrap
 
-df = pd.DataFrame({
-    'a': [1, 2, 3, 4, 5],
-    'b': [6, 7, 8, 9, 10],
-})
+df = pd.DataFrame(
+    {
+        "a": [1, 2, 3, 4, 5],
+        "b": [6, 7, 8, 9, 10],
+    }
+)
+
 
 def mean_of_columns(df):
     return df.mean(numeric_only=True)
 
+
 sample_kwargs = dict(random_state=42)
-df_bootstrap = df.boot.get_samples(bfunc=mean_of_columns, B=5, sample_kwargs=sample_kwargs)
+df_bootstrap = df.boot.get_samples(
+    bfunc=mean_of_columns, B=5, sample_kwargs=sample_kwargs
+)
 ```
 
 which results in:
